@@ -8,13 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using api_storm.Data;
 using api_storm.Models;
 
-namespace api_storm.Controllers
+namespace api_storm.ControllersMisc
 {
-    public class VehicleModelsController : Controller
+    public class VehicleController : Controller
     {
         private readonly api_stormContext _context;
 
-        public VehicleModelsController(api_stormContext context)
+        public VehicleController(api_stormContext context)
         {
             _context = context;
         }

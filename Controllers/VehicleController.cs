@@ -10,35 +10,35 @@ namespace api_storm.Models
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VehicleTypeControllerMod : ControllerBase
+    public class VehicleController : ControllerBase
     {
-        // GET: api/<VehicleTypeControllerMod>
+        // GET: api/<VehicleControllerMod>
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/<VehicleTypeControllerMod>/5
+        // GET api/<VehicleControllerMod>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/<VehicleTypeControllerMod>
+        // POST api/<VehicleControllerMod>
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
-        // PUT api/<VehicleTypeControllerMod>/5
+        // PUT api/<VehicleControllerMod>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<VehicleTypeControllerMod>/5
+        // DELETE api/<VehicleControllerMod>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

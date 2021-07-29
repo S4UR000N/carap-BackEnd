@@ -8,24 +8,24 @@ using Microsoft.EntityFrameworkCore;
 using api_storm.Data;
 using api_storm.Models;
 
-namespace api_storm.Controllers
+namespace api_storm.ControllersMisc
 {
-    public class CopyBrandController : Controller
+    public class VehicleTypeController : Controller
     {
         private readonly api_stormContext _context;
 
-        public CopyBrandController(api_stormContext context)
+        public VehicleTypeController(api_stormContext context)
         {
             _context = context;
         }
 
-        // GET: Brand
+        // GET: VehicleType
         public async Task<IActionResult> Index()
         {
-            return View(await _context.BrandModel.ToListAsync());
+            return View(await _context.VehicleTypeModel.ToListAsync());
         }
 
-        // GET: Brand/Details/5
+        // GET: VehicleType/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace api_storm.Controllers
                 return NotFound();
             }
 
-            var brandModel = await _context.BrandModel
-                .FirstOrDefaultAsync(m => m.BrandId == id);
-            if (brandModel == null)
+            var vehicleTypeModel = await _context.VehicleTypeModel
+                .FirstOrDefaultAsync(m => m.VehicleTypeId == id);
+            if (vehicleTypeModel == null)
             {
                 return NotFound();
             }
 
-            return View(brandModel);
+            return View(vehicleTypeModel);
         }
 
-        // GET: Brand/Create
+        // GET: VehicleType/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Brand/Create
+        // POST: VehicleType/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BrandId,BrandName")] BrandModel brandModel)
+        public async Task<IActionResult> Create([Bind("VehicleTypeId,VehicleType")] VehicleTypeModel vehicleTypeModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(brandModel);
+                _context.Add(vehicleTypeModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(brandModel);
+            return View(vehicleTypeModel);
         }
 
-        // GET: Brand/Edit/5
+        // GET: VehicleType/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace api_storm.Controllers
                 return NotFound();
             }
 
-            var brandModel = await _context.BrandModel.FindAsync(id);
-            if (brandModel == null)
+            var vehicleTypeModel = await _context.VehicleTypeModel.FindAsync(id);
+            if (vehicleTypeModel == null)
             {
                 return NotFound();
             }
-            return View(brandModel);
+            return View(vehicleTypeModel);
         }
 
-        // POST: Brand/Edit/5
+        // POST: VehicleType/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BrandId,BrandName")] BrandModel brandModel)
+        public async Task<IActionResult> Edit(int id, [Bind("VehicleTypeId,VehicleType")] VehicleTypeModel vehicleTypeModel)
         {
-            if (id != brandModel.BrandId)
+            if (id != vehicleTypeModel.VehicleTypeId)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace api_storm.Controllers
             {
                 try
                 {
-                    _context.Update(brandModel);
+                    _context.Update(vehicleTypeModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BrandModelExists(brandModel.BrandId))
+                    if (!VehicleTypeModelExists(vehicleTypeModel.VehicleTypeId))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace api_storm.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(brandModel);
+            return View(vehicleTypeModel);
         }
 
-        // GET: Brand/Delete/5
+        // GET: VehicleType/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace api_storm.Controllers
                 return NotFound();
             }
 
-            var brandModel = await _context.BrandModel
-                .FirstOrDefaultAsync(m => m.BrandId == id);
-            if (brandModel == null)
+            var vehicleTypeModel = await _context.VehicleTypeModel
+                .FirstOrDefaultAsync(m => m.VehicleTypeId == id);
+            if (vehicleTypeModel == null)
             {
                 return NotFound();
             }
 
-            return View(brandModel);
+            return View(vehicleTypeModel);
         }
 
-        // POST: Brand/Delete/5
+        // POST: VehicleType/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var brandModel = await _context.BrandModel.FindAsync(id);
-            _context.BrandModel.Remove(brandModel);
+            var vehicleTypeModel = await _context.VehicleTypeModel.FindAsync(id);
+            _context.VehicleTypeModel.Remove(vehicleTypeModel);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool BrandModelExists(int id)
+        private bool VehicleTypeModelExists(int id)
         {
-            return _context.BrandModel.Any(e => e.BrandId == id);
+            return _context.VehicleTypeModel.Any(e => e.VehicleTypeId == id);
         }
     }
 }

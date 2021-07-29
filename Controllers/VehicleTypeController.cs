@@ -10,144 +10,40 @@ using api_storm.Models;
 
 namespace api_storm.Controllers
 {
-    public class VehicleTypeController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class VehicleTypeController : ControllerBase
     {
-        private readonly api_stormContext _context;
-
-        public VehicleTypeController(api_stormContext context)
+        // GET: api/<VehicleTypeControllerMod>
+        [HttpGet]
+        public IEnumerable<string> Get()
         {
-            _context = context;
+            return new string[] { "value1", "value2" };
         }
 
-        // GET: VehicleType
-        public async Task<IActionResult> Index()
+        // GET api/<VehicleTypeControllerMod>/5
+        [HttpGet("{id}")]
+        public string Get(int id)
         {
-            return View(await _context.VehicleTypeModel.ToListAsync());
+            return "value";
         }
 
-        // GET: VehicleType/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var vehicleTypeModel = await _context.VehicleTypeModel
-                .FirstOrDefaultAsync(m => m.VehicleTypeId == id);
-            if (vehicleTypeModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(vehicleTypeModel);
-        }
-
-        // GET: VehicleType/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: VehicleType/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST api/<VehicleTypeControllerMod>
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("VehicleTypeId,VehicleType")] VehicleTypeModel vehicleTypeModel)
+        public void Post([FromBody] string value)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(vehicleTypeModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(vehicleTypeModel);
         }
 
-        // GET: VehicleType/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // PUT api/<VehicleTypeControllerMod>/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var vehicleTypeModel = await _context.VehicleTypeModel.FindAsync(id);
-            if (vehicleTypeModel == null)
-            {
-                return NotFound();
-            }
-            return View(vehicleTypeModel);
         }
 
-        // POST: VehicleType/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("VehicleTypeId,VehicleType")] VehicleTypeModel vehicleTypeModel)
+        // DELETE api/<VehicleTypeControllerMod>/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
         {
-            if (id != vehicleTypeModel.VehicleTypeId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(vehicleTypeModel);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!VehicleTypeModelExists(vehicleTypeModel.VehicleTypeId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(vehicleTypeModel);
-        }
-
-        // GET: VehicleType/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var vehicleTypeModel = await _context.VehicleTypeModel
-                .FirstOrDefaultAsync(m => m.VehicleTypeId == id);
-            if (vehicleTypeModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(vehicleTypeModel);
-        }
-
-        // POST: VehicleType/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var vehicleTypeModel = await _context.VehicleTypeModel.FindAsync(id);
-            _context.VehicleTypeModel.Remove(vehicleTypeModel);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool VehicleTypeModelExists(int id)
-        {
-            return _context.VehicleTypeModel.Any(e => e.VehicleTypeId == id);
         }
     }
 }
