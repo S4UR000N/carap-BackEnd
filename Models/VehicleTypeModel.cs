@@ -10,6 +10,6 @@ namespace api_storm.Models
     {
         [Key]
         public int VehicleTypeId { get; set; }
-        public string VehicleType { get; set; }
+        public string VehicleTypeName { get; set; }
     }
 }

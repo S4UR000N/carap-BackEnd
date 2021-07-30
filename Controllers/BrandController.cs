@@ -20,14 +20,12 @@ namespace api_storm.Controllers
             _context = context;
         }
 
-        // GET api/<BrandController>
         [HttpGet]
         public async Task<ActionResult> GetAllBrands()
         {
             return Ok(await _context.BrandModel.ToListAsync());
         }
 
-        // GET api/<BrandController>/<id:int>
         [HttpGet("{brandId:int}")]
         public async Task<ActionResult> GetBrandById(int brandId)
         {
@@ -39,7 +37,6 @@ namespace api_storm.Controllers
             return Ok(brand);
         }
 
-        // GET api/<BrandController>/<name:string>
         [HttpGet("{brandName}")]
         public async Task<ActionResult> GetBrandByBrandName(string brandName)
         {
@@ -51,7 +48,7 @@ namespace api_storm.Controllers
             return Ok(brand);
         }
 
-        // POST api/<BrandController>
+
         [HttpPost]
         public async Task<ActionResult> CreateBrand([Bind(include: nameof(BrandModel.BrandName))][FromBody] BrandModel brandModel)
         {
@@ -64,7 +61,6 @@ namespace api_storm.Controllers
             return BadRequest();
         }
 
-        // PUT api/<BrandController>
         [HttpPut]
         public async Task<ActionResult> UpdateBrand([FromBody] BrandModel brandModel)
         {
@@ -88,9 +84,8 @@ namespace api_storm.Controllers
             return NoContent();
         }
 
-        // DELETE api/<BrandController>/<id:int>
         [HttpDelete("{brandId:int}")]
-        public async Task<IActionResult> Delete(int brandId)
+        public async Task<ActionResult> DeleteBrand(int brandId)
         {
             var brandModel = await _context.BrandModel.FindAsync(brandId);
             if (brandModel == null)
@@ -101,6 +96,7 @@ namespace api_storm.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
+
 
         private bool BrandModelExists(int id)
         {

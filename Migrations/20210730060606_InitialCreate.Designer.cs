@@ -9,7 +9,7 @@ using api_storm.Data;
 namespace api_storm.Migrations
 {
     [DbContext(typeof(api_stormContext))]
-    [Migration("20210727081532_InitialCreate")]
+    [Migration("20210730060606_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,7 +63,7 @@ namespace api_storm.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("VehicleType")
+                    b.Property<string>("VehicleTypeName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("VehicleTypeId");

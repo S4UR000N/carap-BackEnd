@@ -40,7 +40,7 @@ namespace api_storm.Migrations
                 {
                     VehicleTypeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    VehicleType = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    VehicleTypeName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
