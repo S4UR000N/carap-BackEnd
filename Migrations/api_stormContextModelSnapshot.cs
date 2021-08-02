@@ -40,14 +40,14 @@ namespace api_storm.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BrandName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("BrandNameId")
+                        .HasColumnType("int");
 
                     b.Property<string>("VehicleName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("VehicleType")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("VehicleTypeId")
+                        .HasColumnType("int");
 
                     b.HasKey("VehicleId");
 

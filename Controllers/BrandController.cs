@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using api_storm.Data;
-using api_storm.Models;
+using api_storm.Models.DatabaseModels;
 
 namespace api_storm.Controllers
 {

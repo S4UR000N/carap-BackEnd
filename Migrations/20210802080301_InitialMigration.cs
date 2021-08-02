@@ -2,7 +2,7 @@
 
 namespace api_storm.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,8 +25,8 @@ namespace api_storm.Migrations
                 {
                     VehicleId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BrandName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    VehicleType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BrandNameId = table.Column<int>(type: "int", nullable: false),
+                    VehicleTypeId = table.Column<int>(type: "int", nullable: false),
                     VehicleName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
