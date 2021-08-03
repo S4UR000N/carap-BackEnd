@@ -10,41 +10,41 @@ namespace api_storm.Migrations
                 name: "BrandModel",
                 columns: table => new
                 {
-                    BrandId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BrandName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BrandModel", x => x.BrandId);
+                    table.PrimaryKey("PK_BrandModel", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "VehicleModel",
                 columns: table => new
                 {
-                    VehicleId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BrandNameId = table.Column<int>(type: "int", nullable: false),
+                    BrandId = table.Column<int>(type: "int", nullable: false),
                     VehicleTypeId = table.Column<int>(type: "int", nullable: false),
-                    VehicleName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ModelName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_VehicleModel", x => x.VehicleId);
+                    table.PrimaryKey("PK_VehicleModel", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "VehicleTypeModel",
                 columns: table => new
                 {
-                    VehicleTypeId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    VehicleTypeName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    TypeName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_VehicleTypeModel", x => x.VehicleTypeId);
+                    table.PrimaryKey("PK_VehicleTypeModel", x => x.Id);
                 });
         }
 

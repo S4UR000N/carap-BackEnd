@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace api_storm.Models.DatabaseModels
 {
     public class VehicleModel
     {
         [Key]
-        public int VehicleId { get; set; }
-        public int BrandNameId { get; set; }
+        public int Id { get; set; }
+        public int BrandId { get; set; }
+        public virtual BrandModel Brand { get; set; }
+
         public int VehicleTypeId { get; set; }
-        public string VehicleName { get; set; }
+        public virtual VehicleTypeModel VehicleType { get; set; }
+                
+        public string ModelName { get; set; }
     }
 }

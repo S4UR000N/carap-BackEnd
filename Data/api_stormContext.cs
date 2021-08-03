@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using api_storm.Models.DatabaseModels;
 
 namespace api_storm.Data
@@ -14,10 +10,10 @@ namespace api_storm.Data
         {
         }
 
-        public DbSet<api_storm.Models.DatabaseModels.BrandModel> BrandModel { get; set; }
+        public DbSet<BrandModel> BrandModel { get; set; }
 
-        public DbSet<api_storm.Models.DatabaseModels.VehicleTypeModel> VehicleTypeModel { get; set; }
+        public DbSet<VehicleTypeModel> VehicleTypeModel { get; set; }
 
-        public DbSet<api_storm.Models.DatabaseModels.VehicleModel> VehicleModel { get; set; }
+        public DbSet<VehicleModel> VehicleModel { get; set; }
     }
 }

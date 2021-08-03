@@ -26,10 +26,10 @@ namespace api_storm.Controllers
             return Ok(await _context.BrandModel.ToListAsync());
         }
 
-        [HttpGet("{brandId:int}")]
-        public async Task<ActionResult> GetBrandById(int brandId)
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult> GetBrandById(int id)
         {
-            var brand = await _context.BrandModel.FindAsync(brandId);
+            var brand = await _context.BrandModel.FindAsync(id);
             if (brand == null)
             {
                 return NotFound();
@@ -38,9 +38,9 @@ namespace api_storm.Controllers
         }
 
         [HttpGet("{brandName}")]
-        public async Task<ActionResult> GetBrandByBrandName(string brandName)
+        public async Task<ActionResult> GetBrandByName(string brandName)
         {
-            var brand = await _context.BrandModel.FirstOrDefaultAsync(m => m.BrandName == brandName);
+            var brand = await _context.BrandModel.FirstOrDefaultAsync(m => m.Name == brandName);
             if (brand == null)
             {
                 return NotFound();
@@ -50,13 +50,13 @@ namespace api_storm.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> CreateBrand([Bind(include: nameof(BrandModel.BrandName))][FromBody] BrandModel brandModel)
+        public async Task<ActionResult> CreateBrand([Bind(include: nameof(BrandModel.Name))][FromBody] BrandModel brandModel)
         {
-            if (!String.IsNullOrEmpty(brandModel.BrandName))
+            if (!String.IsNullOrEmpty(brandModel.Name))
             {
                 _context.Add(brandModel);
                 await _context.SaveChangesAsync();
-                return Ok($"{brandModel.BrandName} Saved Successfuly!");
+                return Ok($"{brandModel.Name} Saved Successfuly!");
             }
             return BadRequest();
         }
@@ -72,7 +72,7 @@ namespace api_storm.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BrandModelExists(brandModel.BrandId))
+                if (!BrandModelExists(brandModel.Id))
                 {
                     return NotFound();
                 }
@@ -84,10 +84,10 @@ namespace api_storm.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{brandId:int}")]
-        public async Task<ActionResult> DeleteBrand(int brandId)
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> DeleteBrand(int id)
         {
-            var brandModel = await _context.BrandModel.FindAsync(brandId);
+            var brandModel = await _context.BrandModel.FindAsync(id);
             if (brandModel == null)
             {
                 return NotFound();
@@ -100,7 +100,7 @@ namespace api_storm.Controllers
 
         private bool BrandModelExists(int id)
         {
-            return _context.BrandModel.Any(e => e.BrandId == id);
+            return _context.BrandModel.Any(e => e.Id == id);
         }
     }
 }

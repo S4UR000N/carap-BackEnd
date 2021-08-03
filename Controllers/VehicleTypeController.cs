@@ -26,10 +26,10 @@ namespace api_storm.Controllers
             return Ok(await _context.VehicleTypeModel.ToListAsync());
         }
 
-        [HttpGet("{vehicleTypeId:int}")]
-        public async Task<ActionResult> GetVehicleTypeById(int vehicleTypeId)
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult> GetVehicleTypeById(int id)
         {
-            var vehicleType = await _context.VehicleTypeModel.FindAsync(vehicleTypeId);
+            var vehicleType = await _context.VehicleTypeModel.FindAsync(id);
             if (vehicleType == null)
             {
                 return NotFound();
@@ -37,10 +37,10 @@ namespace api_storm.Controllers
             return Ok(vehicleType);
         }
 
-        [HttpGet("{vehicleTypeName}")]
-        public async Task<ActionResult> GetVehicleTypeByVehicleTypeName(string vehicleTypeName)
+        [HttpGet("{name}")]
+        public async Task<ActionResult> GetVehicleTypeByName(string name)
         {
-            var vehicleType = await _context.VehicleTypeModel.FirstOrDefaultAsync(m => m.VehicleTypeName == vehicleTypeName);
+            var vehicleType = await _context.VehicleTypeModel.FirstOrDefaultAsync(m => m.Name == name);
             if (vehicleType == null)
             {
                 return NotFound();
@@ -50,13 +50,13 @@ namespace api_storm.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult> CreateVehicleType([Bind(include: nameof(VehicleTypeModel.VehicleTypeName))][FromBody] VehicleTypeModel vehicleTypeModel)
+        public async Task<ActionResult> CreateVehicleType([Bind(include: nameof(VehicleTypeModel.Name))][FromBody] VehicleTypeModel vehicleTypeModel)
         {
-            if (!String.IsNullOrEmpty(vehicleTypeModel.VehicleTypeName))
+            if (!String.IsNullOrEmpty(vehicleTypeModel.Name))
             {
                 _context.Add(vehicleTypeModel);
                 await _context.SaveChangesAsync();
-                return Ok($"{vehicleTypeModel.VehicleTypeName} Saved Successfuly!");
+                return Ok($"{vehicleTypeModel.Name} Saved Successfuly!");
             }
             return BadRequest();
         }
@@ -72,7 +72,7 @@ namespace api_storm.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!VehicleTypeModelExists(vehicleTypeModel.VehicleTypeId))
+                if (!VehicleTypeModelExists(vehicleTypeModel.Id))
                 {
                     return NotFound();
                 }
@@ -84,10 +84,10 @@ namespace api_storm.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{vehicleTypeId:int}")]
-        public async Task<ActionResult> DeleteVehicleType(int vehicleTypeId)
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> DeleteVehicleType(int id)
         {
-            var vehicleTypeModel = await _context.VehicleTypeModel.FindAsync(vehicleTypeId);
+            var vehicleTypeModel = await _context.VehicleTypeModel.FindAsync(id);
             if (vehicleTypeModel == null)
             {
                 return NotFound();
@@ -100,7 +100,7 @@ namespace api_storm.Controllers
 
         private bool VehicleTypeModelExists(int id)
         {
-            return _context.VehicleTypeModel.Any(e => e.VehicleTypeId == id);
+            return _context.VehicleTypeModel.Any(e => e.Id == id);
         }
     }
 }

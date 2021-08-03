@@ -9,7 +9,7 @@ using api_storm.Data;
 namespace api_storm.Migrations
 {
     [DbContext(typeof(api_stormContext))]
-    [Migration("20210802080301_InitialMigration")]
+    [Migration("20210802124419_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,53 +20,53 @@ namespace api_storm.Migrations
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("api_storm.Models.BrandModel", b =>
+            modelBuilder.Entity("api_storm.Models.DatabaseModels.BrandModel", b =>
                 {
-                    b.Property<int>("BrandId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BrandName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("BrandId");
+                    b.HasKey("Id");
 
                     b.ToTable("BrandModel");
                 });
 
-            modelBuilder.Entity("api_storm.Models.VehicleModel", b =>
+            modelBuilder.Entity("api_storm.Models.DatabaseModels.VehicleModel", b =>
                 {
-                    b.Property<int>("VehicleId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BrandNameId")
+                    b.Property<int>("BrandId")
                         .HasColumnType("int");
 
-                    b.Property<string>("VehicleName")
+                    b.Property<string>("ModelName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("VehicleTypeId")
                         .HasColumnType("int");
 
-                    b.HasKey("VehicleId");
+                    b.HasKey("Id");
 
                     b.ToTable("VehicleModel");
                 });
 
-            modelBuilder.Entity("api_storm.Models.VehicleTypeModel", b =>
+            modelBuilder.Entity("api_storm.Models.DatabaseModels.VehicleTypeModel", b =>
                 {
-                    b.Property<int>("VehicleTypeId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("VehicleTypeName")
+                    b.Property<string>("TypeName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("VehicleTypeId");
+                    b.HasKey("Id");
 
                     b.ToTable("VehicleTypeModel");
                 });
